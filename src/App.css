@@ -1,38 +1,50 @@
-.App {
+body {
+  background: #141414 !important;
+  color: #fff !important;
+  padding: 1rem;
+}
+.movie-app > .row {
+  /* overflow-x: auto;*/
+  /* flex-wrap: wrap; */
+}
+
+.card-effect {
+  position: relative;
+  transition: 0.5s, ease;
+}
+.card-effect:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.overlay {
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  color: #fff;
+  background-color: #141414;
+  bottom: 0;
+  transition: 0.5s, ease;
+}
+.card-effect:hover .overlay {
+  opacity: 0.9;
+}
+.button-effect {
+  padding: 15px 40px;
+  font-size: 16px;
   text-align: center;
-}
+  cursor: pointer;
+  outline: none;
+  color: #fff;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
 }
+/* Adding styles on 'active' state */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button-effect:active {
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  transform: translateY(4px);
+  /* Moving button 4px to y-axis */
 }
