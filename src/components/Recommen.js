@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Recommen = ({ randomMovie, icon: Icon }) => {
+export const Recommen = ({ randomMovie, icon: Icon, handleFavourite }) => {
   //in order to use component, I need to make a prop to component again
   const movie = randomMovie;
 
@@ -12,7 +12,7 @@ export const Recommen = ({ randomMovie, icon: Icon }) => {
           <h5 className="card-title pb-2">{movie.Title}</h5>
         </div>
         <div className="overlay button-effect btn btn-dark">
-          <Icon />
+          <Icon handleFavourite={handleFavourite} movie={movie} />
         </div>
       </div>
     </div>

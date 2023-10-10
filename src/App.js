@@ -51,8 +51,17 @@ function App() {
   return (
     <div className="constainer-fluid movie-app ">
       <SearchBox addMovieList={addMovieList} />
-      <MovieListHeading heading="Recommendation" />
-      <Recommen randomMovie={randomMovie} icon={AddFavourite} />
+
+      {!movieList.length && randomMovie && (
+        <div className="row d-flex align-items-center mt-4 mb-4">
+          <MovieListHeading heading="Recommendation" />
+          <Recommen
+            randomMovie={randomMovie}
+            icon={AddFavourite}
+            handleFavourite={handleFavourite}
+          />
+        </div>
+      )}
 
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Movies" />

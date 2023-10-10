@@ -5,6 +5,7 @@ export const MovieDisplay = ({
   handleOnDelete,
   icon: Icon,
   handleFavourite,
+  favourites,
 }) => {
   //I will recieve two arrays but key name is the same
   //Like this I can keep use this component
