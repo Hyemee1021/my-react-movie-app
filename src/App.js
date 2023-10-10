@@ -1,18 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { MovieListHeading } from "./components/MovieListHeading";
 import { SearchBox } from "./components/SearchBox";
 import { MovieDisplay } from "./components/MovieDisplay";
 import { RemoveMovie } from "./components/RemoveMovie";
 import { AddFavourite } from "./components/AddFavourite";
-
+import { randomCharGenerator } from "./utils/randomStr";
+import { fetchRandom } from "./utils/axiosHelper";
+import { Recommen } from "./components/Recommen";
 function App() {
   const [movieList, setMovieList] = useState([]);
 
   const [favourites, setFavourites] = useState([]);
 
+  const [randomMovie, setRandomMovie] = useState({});
+  const [randomChar, setRandomChar] = useState("");
+
+  const fetchRandomMovie = async () => {
+    const char = randomCharGenerator();
+    setRandomChar(char);
+
+    try {
+      const data = await fetchRandom(char);
+      setRandomMovie(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchRandomMovie();
+  }, []);
+
   const addMovieList = (movies) => {
-    setMovieList([...movies]); //movies is an array
+    setMovieList([...movieList, ...movies]); //movies is an array
     //whenever I search new movies I want movie display new movies
     console.log(movieList);
   };
@@ -31,14 +51,20 @@ function App() {
   return (
     <div className="constainer-fluid movie-app ">
       <SearchBox addMovieList={addMovieList} />
-      <MovieListHeading heading="Movies" />
-      <div className="row">
-        <MovieDisplay
-          movieList={movieList}
-          handleFavourite={handleFavourite}
-          icon={AddFavourite}
-        />
+      <MovieListHeading heading="Recommendation" />
+      <Recommen randomMovie={randomMovie} icon={AddFavourite} />
+
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <MovieListHeading heading="Movies" />
+        <div className="row">
+          <MovieDisplay
+            movieList={movieList}
+            handleFavourite={handleFavourite}
+            icon={AddFavourite}
+          />
+        </div>
       </div>
+
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Favorites" />
         <div className="row">

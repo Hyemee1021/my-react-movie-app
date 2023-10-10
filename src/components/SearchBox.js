@@ -1,5 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getMovieRequest } from "../utils/axiosHelper";
+import { randomCharGenerator } from "../utils/randomStr";
 
 export const SearchBox = ({ addMovieList }) => {
   //we get array from request
@@ -10,7 +11,7 @@ export const SearchBox = ({ addMovieList }) => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const str = strRef.current.value;
-
+    console.log(str);
     const data = await getMovieRequest(str);
     console.log(data);
     console.log(data.Search);
@@ -22,6 +23,7 @@ export const SearchBox = ({ addMovieList }) => {
       setError(data.Error);
     }
   };
+
   return (
     <form onSubmit={handleOnSubmit}>
       <div class="mb-3 d-grid">
